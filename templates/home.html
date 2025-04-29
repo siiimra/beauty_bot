@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="py-5 text-center bg-light fade-in">
+  <div class="container">
+    <h1 class="display-4 d-flex align-items-center justify-content-center">
+      .·:*¨༺ 
+      <img src="https://cdnwebeditor.picsart.com/web-editor/b130247c-7b96-4983-8f33-4e3dc3f994a3.png" 
+          alt="BeautyBot Icon" width="300" height="300" class="me-2" style="object-fit: contain;">
+      Welcome to BeautyBot ༻¨*:·.
+    </h1>
+    <p class="lead">Your virtual beauty assistant — take the quiz and get personalized makeup & skincare recommendations based on your needs.</p>
+
+    <div class="d-flex flex-wrap justify-content-center mt-4">
+      <a href="{{ url_for('quiz') }}" class="btn btn-dark btn-lg me-2 mb-2 fade-in">Beauty Quiz</a>
+      <a href="{{ url_for('browse_products') }}" class="btn btn-outline-secondary btn-lg me-2 mb-2 fade-in">Browse Products</a>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('results') }}" class="btn btn-outline-dark btn-lg mb-2 fade-in">My Recommendations</a>
+      {% else %}
+        <a href="{{ url_for('signup') }}" class="btn btn-outline-dark btn-lg mb-2 fade-in">Join Us</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<h3 class="mb-4 text-center">∘₊✧───────────────────────────────────────────✧₊∘</h3>
+
+<!-- FEATURED PRODUCTS -->
+<section class="py-5 fade-in">
+  <div class="container">
+    <h3 class="mb-4 text-center">˚₊· ͟͟͞͞➳❥ Featured Products</h3>
+    <div class="row">
+      <div class="col-md-4 mb-4 fade-in">
+        <div class="card h-100 shadow-sm">
+          <img src="https://www.sephora.com/productimages/sku/s1925387-main-hero.jpg" class="card-img-top" alt="Fenty Foundation" style="height: 250px; object-fit: contain;">
+          <div class="card-body">
+            <h5 class="card-title">Fenty Beauty</h5>
+            <p class="card-text">Pro Filt'r Soft Matte Longwear Foundation</p>
+            <a href="https://www.sephora.com/product/pro-filtr-soft-matte-longwear-foundation-P87985432" target="_blank" class="btn btn-outline-dark">Shop Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4 fade-in">
+        <div class="card h-100 shadow-sm">
+          <img src="https://media.ulta.com/i/ulta/2604924?w=1600&h=1600&fmt=auto" class="card-img-top" alt="e.l.f. Halo Glow" style="height: 250px; object-fit: contain;">
+          <div class="card-body">
+            <h5 class="card-title">e.l.f. Cosmetics</h5>
+            <p class="card-text">Halo Glow Liquid Filter</p>
+            <a href="https://www.ulta.com/p/halo-glow-liquid-filter-pimprod2036949?sku=2604924" target="_blank" class="btn btn-outline-dark">Shop Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4 fade-in">
+        <div class="card h-100 shadow-sm">
+          <img src="https://www.sephora.com/productimages/sku/s2362085-main-zoom.jpg?imwidth=315" class="card-img-top" alt="Rare Beauty Blush" style="height: 250px; object-fit: contain;">
+          <div class="card-body">
+            <h5 class="card-title">Rare Beauty</h5>
+            <p class="card-text">Soft Pinch Liquid Blush</p>
+            <a href="https://www.sephora.com/product/rare-beauty-by-selena-gomez-soft-pinch-liquid-blush-P97989778" target="_blank" class="btn btn-outline-dark">Shop Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<h3 class="mb-4 text-center">∘₊✧───────────────────────────────────────────✧₊∘</h3>
+
+<!-- HOW BEAUTYBOT WORKS -->
+<section class="py-5 fade-in">
+  <div class="container">
+    <h2 class="text-center mb-5">✧･ﾟ: *✧･ﾟ:* Discover Your New Handpicked Favorites *:･ﾟ✧*:･ﾟ</h2>
+
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6 mb-3">
+        <h3>1. Take the Quiz</h3>
+        <p>Answer a few quick, friendly questions about your skin, style, and beauty goals — in under 2 minutes!</p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="https://media.istockphoto.com/id/1075846806/photo/young-college-student-studying-at-library.jpg?s=612x612&w=0&k=20&c=WiTXYqzG9p1j37oYZ27JTInVqOW5j33WbEtp2Cans9E=" alt="Quiz" class="img-fluid rounded shadow-sm">
+      </div>
+    </div>
+
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6 order-md-2 mb-3">
+        <h3>2. Get Personalized Matches</h3>
+        <p>We instantly match you with products that fit your unique skin type, makeup style, concerns, and budget.</p>
+      </div>
+      <div class="col-md-6 order-md-1 text-center">
+        <img src="https://images.pexels.com/photos/208052/pexels-photo-208052.jpeg?cs=srgb&dl=pexels-kinkate-208052.jpg&fm=jpg" alt="Personalized Matches" class="img-fluid rounded shadow-sm">
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-3">
+        <h3>3. Shop Smarter</h3>
+        <p>Discover products that truly fit your life and your look. Save time. Save money. Shop joyfully 💖.</p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="https://wwd.com/wp-content/uploads/2022/11/2226_001.jpg" alt="Shop Smarter" class="img-fluid rounded shadow-sm">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Divider -->
+<h3 class="mb-4 text-center">∘₊✧───────────────────────────────────────────✧₊∘</h3>
+
+<!-- WHY BEAUTYBOT -->
+<section class="py-5 bg-light fade-in">
+  <div class="container">
+    <h2 class="text-center mb-5">✧･ﾟ: *✧･ﾟ:* Why BeautyBot? *:･ﾟ✧*:･ﾟ</h2>
+
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6 mb-3">
+        <h3>Personalized Beauty, No Guessing</h3>
+        <p>BeautyBot helps you discover makeup and skincare that actually fits — saving you hours of searching, guessing, and returning products that don't work.</p>
+
+        <!-- Add spacing or divider here -->
+        <div class="my-4"></div> <!-- This adds vertical spacing -->
+
+        <h3>Smarter, Happier Shopping</h3>
+        <p>By guiding you to better matches, BeautyBot helps you spend smarter — and feel more confident in every purchase you make.</p>
+      </div>
+      
+      <div class="col-md-6 text-center">
+        <img src="https://st2.depositphotos.com/1010669/6303/i/450/depositphotos_63032751-stock-photo-brush-with-powder.jpg" alt="Personalized Beauty" class="img-fluid rounded shadow-sm">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FINAL CALL TO ACTION -->
+<section class="py-5 text-center fade-in">
+  <div class="container">
+    <h2 class="mb-4">Ready to Find Your Match?</h2>
+    <a href="{{ url_for('quiz') }}" class="btn btn-dark btn-lg">Take the Beauty Quiz</a>
+    <a href="{{ url_for('signup') }}" class="btn btn-outline-dark btn-lg mb-2 fade-in">Join Us</a>
+  </div>
+</section>
+
+{% endblock %}

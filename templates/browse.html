@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{{ url_for('home') }}" class="btn btn-outline-secondary">← Home</a>
+<form method="GET" action="{{ url_for('browse_products') }}" class="d-flex flex-wrap justify-content-center mb-4">
+
+  {% for value in ['Foundation', 'Concealer', 'Powder', 'Blush', 'Bronzer', 'Highlighter', 'Eyeshadow', 'High-end', 'Drugstore'] %}
+    <div class="form-check form-check-inline m-2">
+      <input class="btn-check" type="checkbox" name="filters" value="{{ value }}"
+             id="{{ value }}"
+             {% if value in selected_filters %}checked{% endif %}>
+      <label class="btn btn-outline-dark" for="{{ value }}">
+        {{ value }}
+      </label>
+    </div>
+  {% endfor %}
+
+  <div class="w-100 text-center mt-3">
+    <button type="submit" class="btn btn-dark">Apply Filters</button>
+    <a href="{{ url_for('browse_products') }}" class="btn btn-outline-secondary ms-2">Clear Filters</a>
+  </div>
+
+</form>
+
+
+<!-- Products Grid -->
+<div class="row">
+  {% for brand, name, category, image, link in products %}
+  <div class="col-md-4 mb-4">
+    <div class="card h-100 shadow-sm position-relative">
+
+      <!-- Wishlist Button -->
+      {% set is_favorited = (name, brand) in favorited_products %}
+      <div class="position-absolute top-0 end-0 p-2">
+        {% if not is_favorited %}
+        <form action="{{ url_for('add_favorite') }}" method="POST">
+          <input type="hidden" name="product_name" value="{{ name }}">
+          <input type="hidden" name="brand_name" value="{{ brand }}">
+          <input type="hidden" name="category" value="{{ category }}">
+          <input type="hidden" name="image_url" value="{{ image }}">
+          <input type="hidden" name="purchase_link" value="{{ link }}">
+          <button type="submit" class="wishlist-btn" title="Add to Wishlist">
+            🤍
+          </button>
+        </form>
+        {% else %}
+        <form action="{{ url_for('remove_favorite') }}" method="POST">
+          <input type="hidden" name="product_name" value="{{ name }}">
+          <input type="hidden" name="brand_name" value="{{ brand }}">
+          <button type="submit" class="wishlist-btn favorited" title="Remove from Wishlist">
+            ❤️
+          </button>
+        </form>
+        {% endif %}
+      </div>
+
+      {% if image %}
+        <img src="{{ image }}" class="card-img-top" alt="{{ name }}">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ brand }}</h5>
+        <p class="card-text">{{ name }}<br><strong>Category:</strong> {{ category }}</p>
+        <a href="{{ link }}" target="_blank" class="btn btn-outline-dark">🛍 Buy Now</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

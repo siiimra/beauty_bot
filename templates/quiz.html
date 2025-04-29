@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{{ url_for('home') }}" class="btn btn-outline-secondary">← Home</a>
+
+<h1 class="text-center mb-4">Beauty Quiz</h1>
+<form method="POST" class="bg-white p-4 shadow-sm rounded">
+
+  {% if previous_answers %}
+  <div class="alert alert-info text-center">
+    We've pre-filled your last quiz answers! Feel free to update them 💖
+  </div>
+  {% endif %}
+
+  <div class="mb-3">
+    <label class="form-label">What is your skin type?</label><br>
+    {% for value in ['Oily', 'Dry', 'Combination', 'Normal', 'Sensitive'] %}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skin_type" value="{{ value }}"
+        {% if previous_answers.skin_type == value %}checked{% endif %} required>
+        <label class="form-check-label">{{ value }}</label>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">What are your makeup preferences?</label><br>
+    {% for value in ['Natural', 'Bold'] %}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="makeup_pref" value="{{ value }}"
+        {% if previous_answers.makeup_pref == value %}checked{% endif %} required>
+        <label class="form-check-label">{{ value }}</label>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">What base finish do you prefer?</label><br>
+    {% for value in ['Dewy', 'Matte'] %}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="finish" value="{{ value }}"
+        {% if previous_answers.get('finish') == value %}checked{% endif %} required>
+        <label class="form-check-label">{{ value }}</label>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Do you have any skin concerns?</label><br>
+    {% for value in ['Acne', 'Redness', 'Dryness', 'Oiliness'] %}
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="concerns" value="{{ value }}"
+        {% if value in previous_answers.concerns %}checked{% endif %}>
+        <label class="form-check-label">{{ value }}</label>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">What is your preferred price range?</label><br>
+    {% for value in ['High-end', 'Drugstore', 'Both'] %}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="price_range" value="{{ value }}"
+        {% if previous_answers.get('price_range') == value %}checked{% endif %} required>
+        <label class="form-check-label">{{ value }}</label>
+      </div>
+    {% endfor %}
+  </div>
+  
+
+  <button type="submit" class="btn btn-dark mt-3">Get Recommendations</button>
+</form>
+{% endblock %}
