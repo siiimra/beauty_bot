@@ -197,7 +197,7 @@ def quiz():
             conn.commit()
             conn.close()
 
-        # ✅ Redirect to results page instead of rendering results directly
+        # Redirect to results page instead of rendering results directly
         return redirect(url_for('results'))
 
     return render_template('quiz.html', previous_answers=previous_answers)
@@ -208,7 +208,7 @@ def get_matching_products(skin_type, finish, price_range, concerns):
     cursor = conn.cursor()
 
     query = '''
-    SELECT brand_name, product_name, category, image_url, purchase_link
+    SELECT brand_name, product_name, category, image_url, purchase_link, skin_type_match, makeup_finish, price_range
     FROM products
     WHERE skin_type_match LIKE ?
       AND makeup_finish LIKE ?
@@ -287,7 +287,7 @@ def results():
     if selected_filters:
         filtered_recommendations = []
         for rec in recommendations:
-            brand_name, product_name, category, image_url, purchase_link = rec
+            brand_name, product_name, category, image_url, purchase_link, skin_type_match, makeup_finish, price = rec
             match_category = category in selected_filters
             match_price = previous_answers['price_range'] in selected_filters
             match_highend = "High-end" in selected_filters and "High-end" in previous_answers['price_range']
@@ -301,7 +301,7 @@ def results():
     return render_template('results.html',
         recommendations=recommendations,
         favorited_products=favorited_products,
-        selected_filters=selected_filters
+        selected_filters=selected_filters,
     )
 
 

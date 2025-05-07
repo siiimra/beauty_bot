@@ -2,6 +2,25 @@
 {% block content %}
 <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">← Home</a>
 <h1 class="text-center mb-5 fade-in">♡  My Wishlist ♡</h1>
+<form method="GET" action="{{ url_for('browse_products') }}" class="d-flex flex-wrap justify-content-center mb-4">
+
+    {% for value in ['Foundation', 'Concealer', 'Powder', 'Blush', 'Bronzer', 'Highlighter', 'Eyeshadow', 'High-end', 'Drugstore'] %}
+      <div class="form-check form-check-inline m-2">
+        <input class="btn-check" type="checkbox" name="filters" value="{{ value }}"
+               id="{{ value }}"
+               {% if value in selected_filters %}checked{% endif %}>
+        <label class="btn btn-outline-dark" for="{{ value }}">
+          {{ value }}
+        </label>
+      </div>
+    {% endfor %}
+  
+    <div class="w-100 text-center mt-3">
+      <button type="submit" class="btn btn-dark">Apply Filters</button>
+      <a href="{{ url_for('browse_products') }}" class="btn btn-outline-secondary ms-2">Clear Filters</a>
+    </div>
+  
+  </form>
 <h1 class="text-center mb-5 fade-in">╔═════════════════*.·:·.✧ ✦ ✧.·:·.*═════════════════╗</h1>
 
 
@@ -29,7 +48,9 @@
               <div class="card-body">
                 <h5 class="card-title">{{ brand_name }}</h5>
                 <p class="card-text">{{ product_name }}<br><strong>Category:</strong> {{ category }}</p>
-                <a href="{{ purchase_link }}" target="_blank" class="btn btn-outline-dark">🛍 Buy Now</a>
+                <div class="text-end mt-3">
+                    <a href="{{ link }}" target="_blank" class="btn btn-outline-dark">Buy Now</a>
+                </div>
               </div>
             </div>
           </div>

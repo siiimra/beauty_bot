@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="{{ url_for('home') }}" class="btn btn-outline-secondary">← Home</a>
 
-<h1 class="text-center mb-4">Beauty Quiz</h1>
-<form method="POST" class="bg-white p-4 shadow-sm rounded">
+<a href="{{ url_for('home') }}" class="btn btn-outline-secondary mb-4">← Home</a>
+
+<div class="alert alert-light text-center">
+  ︵‿︵‿୨♡୧‿︵‿︵
+</div>
+
+<form method="POST" class="bg-white p-4 shadow-sm rounded" style="max-width: 800px; margin: auto;">
 
   {% if previous_answers %}
   <div class="alert alert-info text-center">
@@ -11,62 +15,63 @@
   </div>
   {% endif %}
 
-  <div class="mb-3">
-    <label class="form-label">What is your skin type?</label><br>
+  <!-- Skin Type -->
+  <h5 class="mt-4 mb-3">Step 1: What's your skin type?</h5>
+  <div class="btn-group d-flex flex-wrap mb-4" role="group">
     {% for value in ['Oily', 'Dry', 'Combination', 'Normal', 'Sensitive'] %}
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="skin_type" value="{{ value }}"
-        {% if previous_answers.skin_type == value %}checked{% endif %} required>
-        <label class="form-check-label">{{ value }}</label>
-      </div>
+      {% set label = value.split(' ')[0] %}
+      <input type="radio" class="btn-check" name="skin_type" id="skin_type_{{ label }}" value="{{ label }}"
+        {% if previous_answers.skin_type == label %}checked{% endif %} required>
+      <label class="btn btn-outline-dark me-2 mb-2" for="skin_type_{{ label }}">{{ value }}</label>
     {% endfor %}
   </div>
 
-  <div class="mb-3">
-    <label class="form-label">What are your makeup preferences?</label><br>
+  <!-- Makeup Preferences -->
+  <h5 class="mt-4 mb-3">Step 2: What are your makeup preferences?</h5>
+  <div class="btn-group d-flex flex-wrap mb-4" role="group">
     {% for value in ['Natural', 'Bold'] %}
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="makeup_pref" value="{{ value }}"
-        {% if previous_answers.makeup_pref == value %}checked{% endif %} required>
-        <label class="form-check-label">{{ value }}</label>
-      </div>
+      {% set label = value.split(' ')[0] %}
+      <input type="radio" class="btn-check" name="makeup_pref" id="makeup_{{ label }}" value="{{ label }}"
+        {% if previous_answers.makeup_pref == label %}checked{% endif %} required>
+      <label class="btn btn-outline-dark me-2 mb-2" for="makeup_{{ label }}">{{ value }}</label>
     {% endfor %}
   </div>
 
-  <div class="mb-3">
-    <label class="form-label">What base finish do you prefer?</label><br>
+  <!-- Finish -->
+  <h5 class="mt-4 mb-3">Step 3: What base finish do you prefer? <span data-bs-toggle="tooltip" title="Finish refers to how your makeup looks – shiny (dewy) or matte (flat).">❓</span></h5>
+  <div class="btn-group d-flex flex-wrap mb-4" role="group">
     {% for value in ['Dewy', 'Matte'] %}
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="finish" value="{{ value }}"
-        {% if previous_answers.get('finish') == value %}checked{% endif %} required>
-        <label class="form-check-label">{{ value }}</label>
-      </div>
+      {% set label = value.split(' ')[0] %}
+      <input type="radio" class="btn-check" name="finish" id="finish_{{ label }}" value="{{ label }}"
+        {% if previous_answers.get('finish') == label %}checked{% endif %} required>
+      <label class="btn btn-outline-dark me-2 mb-2" for="finish_{{ label }}">{{ value }}</label>
     {% endfor %}
   </div>
 
-  <div class="mb-3">
-    <label class="form-label">Do you have any skin concerns?</label><br>
+  <!-- Concerns -->
+  <h5 class="mt-4 mb-3">Step 4: Do you have any skin concerns?</h5>
+  <div class="btn-group d-flex flex-wrap mb-4" role="group">
     {% for value in ['Acne', 'Redness', 'Dryness', 'Oiliness'] %}
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="concerns" value="{{ value }}"
+      <input type="checkbox" class="btn-check" name="concerns" id="concern_{{ value }}" value="{{ value }}"
         {% if value in previous_answers.concerns %}checked{% endif %}>
-        <label class="form-check-label">{{ value }}</label>
-      </div>
+      <label class="btn btn-outline-dark me-2 mb-2" for="concern_{{ value }}">{{ value }}</label>
     {% endfor %}
   </div>
 
-  <div class="mb-3">
-    <label class="form-label">What is your preferred price range?</label><br>
+  <!-- Price Range -->
+  <h5 class="mt-4 mb-3">Step 5: What is your preferred price range?</h5>
+  <div class="btn-group d-flex flex-wrap mb-4" role="group">
     {% for value in ['High-end', 'Drugstore', 'Both'] %}
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="price_range" value="{{ value }}"
-        {% if previous_answers.get('price_range') == value %}checked{% endif %} required>
-        <label class="form-check-label">{{ value }}</label>
-      </div>
+      {% set label = value.split(' ')[0] %}
+      <input type="radio" class="btn-check" name="price_range" id="price_{{ label }}" value="{{ label }}"
+        {% if previous_answers.get('price_range') == label %}checked{% endif %} required>
+      <label class="btn btn-outline-dark me-2 mb-2" for="price_{{ label }}">{{ value }}</label>
     {% endfor %}
   </div>
-  
 
-  <button type="submit" class="btn btn-dark mt-3">Get Recommendations</button>
+  <div class="text-center mt-4">
+    <button type="submit" class="btn btn-dark btn-lg">✨ Get Recommendations</button>
+  </div>
 </form>
+
 {% endblock %}

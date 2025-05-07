@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">← Home</a>
+<h1 class="text-center mb-5 fade-in">Browse Products</h1>
+
 <form method="GET" action="{{ url_for('browse_products') }}" class="d-flex flex-wrap justify-content-center mb-4">
 
   {% for value in ['Foundation', 'Concealer', 'Powder', 'Blush', 'Bronzer', 'Highlighter', 'Eyeshadow', 'High-end', 'Drugstore'] %}
@@ -54,12 +56,15 @@
       </div>
 
       {% if image %}
-        <img src="{{ image }}" class="card-img-top" alt="{{ name }}">
+        <img src="{{ image }}" class="card-img-top" alt="{{ name }} style="height: 250px; object-fit: contain;">
       {% endif %}
       <div class="card-body">
         <h5 class="card-title">{{ brand }}</h5>
         <p class="card-text">{{ name }}<br><strong>Category:</strong> {{ category }}</p>
-        <a href="{{ link }}" target="_blank" class="btn btn-outline-dark">🛍 Buy Now</a>
+        <div class="text-end mt-3">
+          <a href="{{ link }}" target="_blank" class="btn btn-outline-dark">Buy Now</a>
+        </div>
+        
       </div>
     </div>
   </div>

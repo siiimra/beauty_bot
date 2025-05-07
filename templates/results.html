@@ -37,7 +37,7 @@
 
 {% if recommendations %}
   <div class="row">
-    {% for brand, name, category, image, link in recommendations %}
+    {% for brand, name, category, image, link, skin_type_match, makeup_finish, price in recommendations    %}
       <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm position-relative">
 
@@ -67,13 +67,27 @@
           </div>
 
           {% if image %}
-            <img src="{{ image }}" class="card-img-top" alt="{{ name }}">
+            <img src="{{ image }}" class="card-img-top" alt="{{ name }} style="height: 250px; object-fit: contain;">
           {% endif %}
 
           <div class="card-body">
             <h5 class="card-title">{{ brand }}</h5>
             <p class="card-text">{{ name }}<br><strong>Category:</strong> {{ category }}</p>
-            <a href="{{ link }}" target="_blank" class="btn btn-outline-dark">🛍 Buy Now</a>
+          
+            <!-- Match summary -->
+            <div class="mt-3 text-start small text-muted">
+              <p><strong>Best for:</strong> {{ skin_type_match }} skin</p>
+              <p><strong>Finish:</strong> {{ makeup_finish }}</p>
+              <p><strong>Price Range:</strong> {{ price }}</p>
+              {% if concerns %}
+                <p><strong>Concerns Targeted:</strong> {{ concerns }}</p>
+              {% endif %}
+            </div>
+          
+            <div class="text-end mt-3">
+              <a href="{{ link }}" target="_blank" class="btn btn-outline-dark">Buy Now</a>
+            </div>
+            
           </div>
           
         </div>
