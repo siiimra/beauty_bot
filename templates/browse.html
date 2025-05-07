@@ -5,11 +5,11 @@
 
 <form method="GET" action="{{ url_for('browse_products') }}" class="d-flex flex-wrap justify-content-center mb-4">
 
-  {% for value in ['Foundation', 'Concealer', 'Powder', 'Blush', 'Bronzer', 'Highlighter', 'Eyeshadow', 'High-end', 'Drugstore'] %}
+  {% for value in ['Foundation', 'Concealer', 'Powder', 'Blush', 'Bronzer', 'Highlighter', 'Eyeshadow', 'Lipstick', 'High-end', 'Drugstore'] %}
     <div class="form-check form-check-inline m-2">
       <input class="btn-check" type="checkbox" name="filters" value="{{ value }}"
-             id="{{ value }}"
-             {% if value in selected_filters %}checked{% endif %}>
+            id="{{ value }}"
+            {% if value in selected_filters %}checked{% endif %}>
       <label class="btn btn-outline-dark" for="{{ value }}">
         {{ value }}
       </label>
@@ -56,7 +56,7 @@
       </div>
 
       {% if image %}
-        <img src="{{ image }}" class="card-img-top" alt="{{ name }} style="height: 250px; object-fit: contain;">
+        <img src="{{ image }}" class="card-img-top" alt="{{ name }}" style="height: 250px; object-fit: contain;">
       {% endif %}
       <div class="card-body">
         <h5 class="card-title">{{ brand }}</h5>

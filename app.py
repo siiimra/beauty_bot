@@ -203,30 +203,43 @@ def quiz():
     return render_template('quiz.html', previous_answers=previous_answers)
 
 # Matching function
-def get_matching_products(skin_type, finish, price_range, concerns):
+def get_matching_products(skin_type, finish, price_range, concerns, makeup_pref):
     conn = sqlite3.connect('beauty_products.db')
     cursor = conn.cursor()
 
+    # Start building query
     query = '''
-    SELECT brand_name, product_name, category, image_url, purchase_link, skin_type_match, makeup_finish, price_range
+    SELECT brand_name, product_name, category, skin_type_match, makeup_finish, price_range, 
+           concern_match, makeup_pref_match, image_url, purchase_link 
     FROM products
-    WHERE skin_type_match LIKE ?
-      AND makeup_finish LIKE ?
+    WHERE 
+        (skin_type_match = ? OR skin_type_match = 'All')
+        AND (makeup_finish = ? OR makeup_finish = 'All')
+        AND (price_range = ? OR price_range = 'Both')
+        AND (makeup_pref_match = ? OR makeup_pref_match = 'Both')
     '''
-    values = [f"%{skin_type}%", f"%{finish}%"]
+    values = [skin_type, finish, price_range, makeup_pref]
 
-    if price_range != "Both":
-        query += " AND price_range = ?"
-        values.append(price_range)
+    # Add concern filtering (if any)
+    if concerns:
+        # This will only match one concern at a time, but you could expand this for multiple concerns
+        query += ' AND (concern_match = ? OR concern_match = "None" OR concern_match = "All")'
+        values.append(concerns[0])  # Only using the first concern for now
+    else:
+        query += ' AND (concern_match = "None" OR concern_match = "All")'
 
-    for concern in concerns:
-        query += " AND (concern_match LIKE ? OR concern_match = 'All')"
-        values.append(f"%{concern}%")
+    print("Query values:", values)
 
     cursor.execute(query, values)
     results = cursor.fetchall()
     conn.close()
     return results
+
+
+
+
+
+
 
 # Results route
 @app.route('/results', methods=['GET'])
@@ -280,23 +293,25 @@ def results():
         previous_answers['skin_type'],
         previous_answers['finish'],
         previous_answers['price_range'],
-        previous_answers['concerns']
+        previous_answers['concerns'],
+        previous_answers['makeup_pref']
     )
 
     # If any filters selected, filter the recommendations manually
     if selected_filters:
         filtered_recommendations = []
         for rec in recommendations:
-            brand_name, product_name, category, image_url, purchase_link, skin_type_match, makeup_finish, price = rec
-            match_category = category in selected_filters
-            match_price = previous_answers['price_range'] in selected_filters
-            match_highend = "High-end" in selected_filters and "High-end" in previous_answers['price_range']
-            match_drugstore = "Drugstore" in selected_filters and "Drugstore" in previous_answers['price_range']
+            brand_name, product_name, category, skin_type_match, makeup_finish, price_range, concern_match, makeup_pref_match, image_url, purchase_link = rec
 
-            if match_category or match_price or match_highend or match_drugstore:
+            match_category = category in selected_filters
+            match_price = price_range in selected_filters
+            match_makeup_pref = makeup_pref_match in selected_filters
+
+            if match_category or match_price or match_makeup_pref:
                 filtered_recommendations.append(rec)
 
         recommendations = filtered_recommendations
+
 
     return render_template('results.html',
         recommendations=recommendations,
@@ -406,10 +421,29 @@ def wishlist():
         FROM favorites
         WHERE user_id = ?
     ''', (current_user.id,))
-    favorites = cursor.fetchall()
+    all_favorites = cursor.fetchall()
+
+    selected_filters = request.args.getlist('filters')
+
+    if selected_filters:
+        filtered_favorites = []
+        for fav in all_favorites:
+            product_name, brand_name, category, image_url, purchase_link = fav
+            match_category = category in selected_filters
+            match_price = any(price in selected_filters for price in ['High-end', 'Drugstore'] if price in category or price in brand_name)
+            # Keep if matches either category or price range
+            if match_category or match_price:
+                filtered_favorites.append(fav)
+        favorites = filtered_favorites
+    else:
+        favorites = all_favorites
+
     conn.close()
 
-    return render_template('wishlist.html', favorites=favorites)
+    return render_template('wishlist.html',
+        favorites=favorites,
+        selected_filters=selected_filters
+    )
 
 
 @app.route('/my_account')

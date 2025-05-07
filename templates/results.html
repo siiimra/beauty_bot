@@ -9,12 +9,12 @@
 
 <!-- Filter Form -->
 <form method="GET" action="{{ url_for('results') }}" class="d-flex flex-wrap justify-content-center mb-4">
-  {% for value in ['Foundation', 'Concealer', 'Powder', 'Blush', 'Bronzer', 'Highlighter', 'Eyeshadow', 'High-end', 'Drugstore'] %}
+  {% for value in ['Foundation', 'Concealer', 'Powder', 'Blush', 'Bronzer', 'Highlighter', 'Eyeshadow', 'Lipstick', 'High-end', 'Drugstore'] %}
     <div class="form-check form-check-inline m-2">
       <input class="btn-check" type="checkbox" name="filters" value="{{ value }}"
-             id="filter-{{ value }}"
-             {% if value in selected_filters %}checked{% endif %}>
-      <label class="btn btn-outline-dark" for="filter-{{ value }}">
+            id="{{ value }}"
+            {% if value in selected_filters %}checked{% endif %}>
+      <label class="btn btn-outline-dark" for="{{ value }}">
         {{ value }}
       </label>
     </div>
@@ -37,7 +37,7 @@
 
 {% if recommendations %}
   <div class="row">
-    {% for brand, name, category, image, link, skin_type_match, makeup_finish, price in recommendations    %}
+    {% for brand, name, category, skin_type_match, makeup_finish, price, concern_match, makeup_pref, image, link in recommendations  %}
       <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm position-relative">
 
@@ -67,7 +67,7 @@
           </div>
 
           {% if image %}
-            <img src="{{ image }}" class="card-img-top" alt="{{ name }} style="height: 250px; object-fit: contain;">
+            <img src="{{ image }}" class="card-img-top" alt="{{ name }}" style="height: 250px; object-fit: contain;">
           {% endif %}
 
           <div class="card-body">
@@ -80,7 +80,7 @@
               <p><strong>Finish:</strong> {{ makeup_finish }}</p>
               <p><strong>Price Range:</strong> {{ price }}</p>
               {% if concerns %}
-                <p><strong>Concerns Targeted:</strong> {{ concerns }}</p>
+                <p><strong>Product Targets:</strong> {{ concern_match }}</p>
               {% endif %}
             </div>
           
