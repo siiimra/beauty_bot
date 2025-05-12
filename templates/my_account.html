@@ -1,3 +1,18 @@
+<!--
+my_account.html
+
+PURPOSE:
+  This is the user dashboard page in the BeautyBot app. It allows logged-in users
+  to view their profile info, quiz answers, wishlist, and skin concern education.
+
+USAGE:
+  This template extends base.html and is rendered by the /my_account route.
+
+NOTES:
+  - Includes delete account confirmation modal
+  - Displays different sections based on quiz data and favorite products
+-->
+
 {% extends 'base.html' %}
 {% block content %}
 
@@ -20,8 +35,6 @@
         🗑️ Delete Account
     </button>
 </div>
-
-    
 
 <!-- Saved Quiz Answers -->
 <section class="py-5 fade-in">
@@ -140,7 +153,7 @@
 </section>
 {% endif %}
 
-<!-- Delete Account Confirmation Modal -->
+<!-- Delete Account Confirmation Popup -->
 <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">

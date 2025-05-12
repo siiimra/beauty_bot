@@ -1,5 +1,27 @@
+"""
+populate_database.py
+
+PURPOSE:
+    This script sets up the product catalog for the BeautyBot application.
+    It creates a SQLite database table named 'products' (if not already present),
+    clears old data, and populates it with a curated set of makeup and skincare products.
+
+USAGE:
+    Run with: python populate_database.py
+
+NOTES:
+    - Designed to be run during project setup or database refresh.
+    - Ensure you are in the correct project directory before executing.
+    - The 'products' table includes attributes related to skin type, makeup finish,
+      product type, pricing, and preference matching.
+
+OUTPUT:
+    Prints a success message once the database is populated.
+"""
+
 import sqlite3
 
+# List of product tuples to populate the database
 products = [
     # (brand, product, category, skin_type, finish, price_range, concerns, makeup_pref image_url, purchase_link)
     ("Fenty Beauty", "Pro Filt'r Soft Matte Longwear Foundation", "Foundation", "Oily", "Matte", "High-end", "All" , "Both", "https://www.sephora.com/productimages/sku/s1925387-main-hero.jpg", "https://www.sephora.com/product/pro-filtr-soft-matte-longwear-foundation-P87985432"),
@@ -62,11 +84,11 @@ products += [
 ]
 
 
-# Create database
+# Connect to DB
 conn = sqlite3.connect("beauty_products.db")
 cursor = conn.cursor()
 
-# Create or replace table
+# Create or open the SQLite databasereate or replace table
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY,

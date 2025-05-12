@@ -1,10 +1,26 @@
+<!--
+Browse Page (browse.html)
+
+PURPOSE:
+  This template allows users to browse all products in the BeautyBot app.
+  Users can filter by category and price range, and add or remove products from their wishlist.
+
+USAGE:
+  This template extends base.html and is rendered by the /browse route.
+
+NOTES:
+  - Filters are preserved via GET parameters.
+  - Products can be added to or removed from favorites using forms in each card.
+  - Uses Bootstrap for responsive grid and layout styling.
+-->
+
 {% extends 'base.html' %}
 {% block content %}
 <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">← Home</a>
 <h1 class="text-center mb-5 fade-in">Browse Products</h1>
 
+<!-- Filter Form -->
 <form method="GET" action="{{ url_for('browse_products') }}" class="d-flex flex-wrap justify-content-center mb-4">
-
   {% for value in ['Foundation', 'Concealer', 'Powder', 'Blush', 'Bronzer', 'Highlighter', 'Eyeshadow', 'Lipstick', 'High-end', 'Drugstore'] %}
     <div class="form-check form-check-inline m-2">
       <input class="btn-check" type="checkbox" name="filters" value="{{ value }}"
@@ -20,7 +36,6 @@
     <button type="submit" class="btn btn-dark">Apply Filters</button>
     <a href="{{ url_for('browse_products') }}" class="btn btn-outline-secondary ms-2">Clear Filters</a>
   </div>
-
 </form>
 
 
@@ -45,6 +60,7 @@
           </button>
         </form>
         {% else %}
+        <!-- Form to remove favorite -->
         <form action="{{ url_for('remove_favorite') }}" method="POST">
           <input type="hidden" name="product_name" value="{{ name }}">
           <input type="hidden" name="brand_name" value="{{ brand }}">
@@ -55,6 +71,7 @@
         {% endif %}
       </div>
 
+      <!-- Product image and URL -->
       {% if image %}
         <img src="{{ image }}" class="card-img-top" alt="{{ name }}" style="height: 250px; object-fit: contain;">
       {% endif %}

@@ -1,0 +1,152 @@
+<!--
+Beauty Tips Page (beauty_tips.html)
+
+PURPOSE:
+  Provides users with in-depth explanations of the quiz categories, including skin types,
+  makeup preferences, finish types, concerns, and price ranges.
+
+USAGE:
+  This template extends base.html and is accessed via the "Beauty Tips" navigation link.
+
+NOTES:
+  - Supports quiz takers who need help understanding terminology.
+  - Includes embedded YouTube videos for visual explanations.
+-->
+
+{% extends 'base.html' %}
+{% block content %}
+
+<a href="{{ url_for('quiz') }}" class="btn btn-outline-secondary mb-4">← Back to Quiz</a>
+
+<div class="container fade-in" style="max-width: 900px;">
+
+  <!-- Page Header -->
+  <div class="text-center mb-5">
+    <h1 class="display-5">Beauty Tips & Quiz Help</h1>
+    <p class="lead text-muted">Not sure how to answer the quiz? We’ll guide you through each step so you get the most accurate recommendations for your look, skin, and style.</p>
+  </div>
+
+  <!-- SKIN TYPES -->
+  <section class="mb-5">
+    <h3 class="fw-bold border-bottom pb-2">1. Skin Types</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Oily:</strong> Produces excess oil, often shiny or prone to acne.</p>
+        <p><strong>Dry:</strong> Feels tight, flaky, or rough. Needs moisture.</p>
+        <p><strong>Combination:</strong> Oily in the T-zone (forehead, nose, chin), dry elsewhere.</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Normal:</strong> Rarely breaks out, not too oily or too dry — feels balanced.</p>
+        <p><strong>Sensitive:</strong> Easily irritated or red — may react to new products.</p>
+        <div class="alert alert-info mt-3">💡 <em>Tip:</em> After cleansing, wait 30 min. If you’re shiny → oily. If tight → dry.</div>
+      </div>
+    </div>
+    <p class="text-center mt-4 text-muted"><strong>Still confused? Check out this video from Beauty Within:</strong></p>
+
+    <!-- Youtube Video Embed -->
+    <div class="ratio ratio-16x9 mt-4">
+            </strong>
+        <iframe src="https://www.youtube.com/embed/4cIh6emAdCg?start=263" 
+                title="Understanding Skin Types" 
+                allowfullscreen></iframe>
+      </div>
+  </section>
+
+  <!-- MAKEUP PREFERENCES -->
+  <section class="mb-5">
+    <h3 class="fw-bold border-bottom pb-2">2. Makeup Preferences</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="bg-light p-3 rounded shadow-sm">
+          <h5 class="fw-semibold">Natural</h5>
+          <p>Subtle, everyday look. Light coverage, nude tones, fresh glow.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="bg-light p-3 rounded shadow-sm">
+          <h5 class="fw-semibold">Bold</h5>
+          <p>Colorful or dramatic looks. Colorful eyeshadow, bold lipstick, glamorous look.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-center mt-4 text-muted"><strong>Need help choosing Natural vs Bold? Watch this quick comparison by EDA beauty Hair & Makeup:</strong></p>
+
+    <!-- Youtube Video Embed -->
+    <div class="ratio ratio-16x9">
+    <iframe 
+        src="https://www.youtube.com/embed/uaKFjCbn2jU" 
+        title="Natural vs Bold Makeup"
+        allowfullscreen>
+    </iframe>
+    </section>
+
+  <!-- FINISH TYPES -->
+  <section class="mb-5">
+    <h3 class="fw-bold border-bottom pb-2">3. Base Finish</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="bg-light p-3 rounded shadow-sm">
+          <h5 class="fw-semibold">Dewy</h5>
+          <p>Glowy, radiant skin. Looks hydrated and luminous. Better for individuals with dry skin</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="bg-light p-3 rounded shadow-sm">
+          <h5 class="fw-semibold">Matte</h5>
+          <p>No shine, smooth and velvety — great for oily skin or long wear.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Video Caption -->
+    <p class="text-center mt-4 text-muted"><strong>Heres some more information:</strong></p>
+
+    <!-- Responsive YouTube Embed -->
+    <div class="ratio ratio-16x9">
+    <iframe 
+        src="https://www.youtube.com/embed/2L6e_eVrS7w?start=80" 
+        title="Matte vs Dewy Finish"
+        allowfullscreen>
+    </iframe>
+    </div>
+  </section>
+
+  <!-- SKIN CONCERNS -->
+  <section class="mb-5">
+    <h3 class="fw-bold border-bottom pb-2">4. Skin Concerns</h3>
+    <ul class="list-group list-group-flush shadow-sm">
+      <li class="list-group-item"><strong>Acne:</strong> Breakouts, blackheads, or frequent pimples.</li>
+      <li class="list-group-item"><strong>Redness:</strong> Rosy cheeks, irritation, or sensitivity flare-ups.</li>
+      <li class="list-group-item"><strong>Dryness:</strong> Flaky patches, tightness, or rough skin texture.</li>
+      <li class="list-group-item"><strong>Oiliness:</strong> Shine, clogged pores, makeup sliding off.</li>
+    </ul>
+    <div class="alert alert-warning mt-3">You can choose more than one concern — we’ll match products that target any of them.</div>
+  </section>
+
+  <!-- PRICE RANGE -->
+  <section class="mb-5">
+    <h3 class="fw-bold border-bottom pb-2">5. Price Range</h3>
+    <div class="row text-start">
+      <div class="col-md-4">
+        <div class="bg-light p-3 rounded shadow-sm">
+          <h6 class="fw-semibold">Drugstore</h6>
+          <p>Affordable, accessible, budget-friendly brands you can find in stores like CVS, Walgreens or Walmart. Ranges from $5–20. </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="bg-light p-3 rounded shadow-sm">
+          <h6 class="fw-semibold">High-end</h6>
+          <p>Premium quality, often from Sephora, Macy's, or designer brands. Ranges from $30–60+.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="bg-light p-3 rounded shadow-sm">
+          <h6 class="fw-semibold">Both</h6>
+          <p>You’re open to anything. We’ll pull products from all price ranges.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+{% endblock %}

@@ -1,7 +1,29 @@
+<!--
+wishlist.html
+
+PURPOSE:
+  Displays the authenticated user's wishlist of favorited beauty products.
+  Allows users to filter products by category or price range and remove items.
+
+USAGE:
+  Rendered by the `/wishlist` route in the Flask app.
+  Requires user to be logged in.
+
+NOTES:
+  - Supports filtering by category and price.
+  - Shows a heart icon to remove items from the wishlist.
+-->
+
 {% extends 'base.html' %}
 {% block content %}
+
+<!-- Back to Home Button -->
 <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">← Home</a>
+
+<!-- Page Title -->
 <h1 class="text-center mb-5 fade-in">♡  My Wishlist ♡</h1>
+
+<!-- Filter Form -->
 <form method="GET" action="{{ url_for('wishlist') }}" class="d-flex flex-wrap justify-content-center mb-4">
 
     {% for value in ['Foundation', 'Concealer', 'Powder', 'Blush', 'Bronzer', 'Highlighter', 'Eyeshadow', 'Lipstick', 'High-end', 'Drugstore'] %}
@@ -23,7 +45,7 @@
   </form>
 <h1 class="text-center mb-5 fade-in">╔═════════════════*.·:·.✧ ✦ ✧.·:·.*═════════════════╗</h1>
 
-
+<!-- Wishlist Items -->
 {% if favorites %}
     <div class="row fade-in">
       {% for product_name, brand_name, category, image_url, purchase_link in favorites %}
@@ -40,10 +62,12 @@
                 </button>
               </form>
             </div>
-
+            
+            <!-- Product Image -->
             {% if image_url %}
               <img src="{{ image_url }}" class="card-img-top" alt="{{ product_name }}" style="height: 250px; object-fit: contain;">
             {% endif %}
+            <!-- Product Info -->
             <div class="card-body">
               <h5 class="card-title">{{ brand_name }}</h5>
               <p class="card-text">{{ product_name }}<br><strong>Category:</strong> {{ category }}</p>
@@ -56,6 +80,7 @@
       {% endfor %}
     </div>
 {% else %}
+    <!-- Empty Wishlist Message -->
     <div class="alert alert-info text-center">
         {% if selected_filters %}
             You haven't favorited any {{ selected_filters | join(', ') }} yet!
@@ -65,10 +90,6 @@
     </div>
 {% endif %}
 
-
 <h1 class="text-center mb-5 fade-in">╚═════════════════*.·:·.✧ ✦ ✧.·:·.*═════════════════╝</h1>
-
-
-
 
 {% endblock %}

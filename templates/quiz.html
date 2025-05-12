@@ -1,22 +1,42 @@
+<!--
+quiz.html
+
+PURPOSE:
+  This page displays the interactive BeautyBot quiz where users input their skin type,
+  makeup preferences, finish, concerns, and price range. The form is used to generate
+  personalized product recommendations.
+
+USAGE:
+  This template extends base.html and is rendered by the /quiz route.
+
+NOTES:
+  - Pre-fills quiz answers if the user has taken the quiz before.
+  - Form submission sends a POST request with quiz answers.
+  - Links to beauty_tips for help answering questions.
+-->
+
 {% extends 'base.html' %}
 {% block content %}
 
+<!-- Back to home button -->
 <a href="{{ url_for('home') }}" class="btn btn-outline-secondary mb-4">← Home</a>
 
-<div class="alert alert-light text-center">
-  ︵‿︵‿୨♡୧‿︵‿︵
-</div>
+
 
 <form method="POST" class="bg-white p-4 shadow-sm rounded" style="max-width: 800px; margin: auto;">
-
+  <!-- Notification for returning users -->
   {% if previous_answers %}
   <div class="alert alert-info text-center">
     We've pre-filled your last quiz answers! Feel free to update them 💖
   </div>
   {% endif %}
 
+  <!-- Beauty Tips Redirect -->
+  Not sure how to answer the quiz? Visit our 
+  <a href="{{ url_for('beauty_tips') }}" class="alert-link">Beauty Tips </a> section for guidance.
+
   <!-- Skin Type -->
-  <h5 class="mt-4 mb-3">Step 1: What's your skin type?</h5>
+  <h5 class="mt-4 mb-3">1. What's your skin type?</h5>
   <div class="btn-group d-flex flex-wrap mb-4" role="group">
     {% for value in ['Oily', 'Dry', 'Combination', 'Normal', 'Sensitive'] %}
       {% set label = value.split(' ')[0] %}
@@ -27,7 +47,7 @@
   </div>
 
   <!-- Makeup Preferences -->
-  <h5 class="mt-4 mb-3">Step 2: What are your makeup preferences?</h5>
+  <h5 class="mt-4 mb-3">2. What are your makeup preferences?</h5>
   <div class="btn-group d-flex flex-wrap mb-4" role="group">
     {% for value in ['Natural', 'Bold'] %}
       {% set label = value.split(' ')[0] %}
@@ -38,7 +58,7 @@
   </div>
 
   <!-- Finish -->
-  <h5 class="mt-4 mb-3">Step 3: What base finish do you prefer? <span data-bs-toggle="tooltip" title="Finish refers to how your makeup looks – shiny (dewy) or matte (flat).">❓</span></h5>
+  <h5 class="mt-4 mb-3">3. What base finish do you prefer?</h5>
   <div class="btn-group d-flex flex-wrap mb-4" role="group">
     {% for value in ['Dewy', 'Matte'] %}
       {% set label = value.split(' ')[0] %}
@@ -49,7 +69,7 @@
   </div>
 
   <!-- Concerns -->
-  <h5 class="mt-4 mb-3">Step 4: Do you have any skin concerns?</h5>
+  <h5 class="mt-4 mb-3">4. Do you have any skin concerns?</h5>
   <div class="btn-group d-flex flex-wrap mb-4" role="group">
     {% for value in ['Acne', 'Redness', 'Dryness', 'Oiliness'] %}
       <input type="checkbox" class="btn-check" name="concerns" id="concern_{{ value }}" value="{{ value }}"
@@ -59,7 +79,7 @@
   </div>
 
   <!-- Price Range -->
-  <h5 class="mt-4 mb-3">Step 5: What is your preferred price range?</h5>
+  <h5 class="mt-4 mb-3">5. What is your preferred price range?</h5>
   <div class="btn-group d-flex flex-wrap mb-4" role="group">
     {% for value in ['High-end', 'Drugstore', 'Both'] %}
       {% set label = value.split(' ')[0] %}
@@ -69,8 +89,9 @@
     {% endfor %}
   </div>
 
+    <!-- Submit Button -->
   <div class="text-center mt-4">
-    <button type="submit" class="btn btn-dark btn-lg">✨ Get Recommendations</button>
+    <button type="submit" class="btn btn-dark btn-lg">Get Recommendations</button>
   </div>
 </form>
 

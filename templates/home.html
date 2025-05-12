@@ -1,7 +1,24 @@
+<!--
+Home Page (home.html)
+
+PURPOSE:
+  This is the main landing page of the BeautyBot web application.
+  It introduces users to BeautyBot’s purpose, features a few highlighted products,
+  and explains how the system works.
+
+USAGE:
+  This template extends base.html and defines the home screen content for BeautyBot.
+
+NOTES:
+  - Uses fade-in animations and responsive Bootstrap 5 design.
+  - Tailored for both first-time users and logged-in users.
+  - Includes options for quiz, recommendations, and browsing.
+-->
+
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- HERO SECTION -->
+<!-- Introduction/Welcome -->
 <section class="py-5 text-center bg-light fade-in">
   <div class="container">
     <h1 class="display-4 d-flex align-items-center justify-content-center">
@@ -142,15 +159,12 @@
   </div>
 </section>
 
+<!-- Footer Credit -->
 <section class="text-center">
-  
   <p>┏━━━━━━•❃°•°❀°•°❃•━━━━━━┓</p>
 
   <p>tool created by simra ahmed</p>
 
   <p>┗━━━━━━•❃°•°❀°•°❃•━━━━━━┛</p>
 </section>
-
-
-
 {% endblock %}

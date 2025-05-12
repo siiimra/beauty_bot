@@ -1,3 +1,21 @@
+<!--
+base.html
+
+PURPOSE:
+  This is the base layout template for the BeautyBot Flask application.
+  It provides the global structure, shared navbar, stylesheet imports,
+  flash message rendering, and JavaScript initialization for animations and toast alerts.
+
+USAGE:
+  Child templates extend this file and inject content using block tags.
+
+NOTES:
+  - Uses Bootstrap 5.3 CDN for styling and responsive behavior.
+  - Navbar includes links to quiz, recommendations, tips, wishlist, and account actions.
+  - Animations and toast message display are initialized via JavaScript.
+-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +24,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
+    /* Custom button styles */
     .wishlist-btn {
       background: none;
       border: none;
@@ -27,11 +46,12 @@
     color: white;
     border-color: black;
     }
+    
     .skin-concerns-section {
     background-color: transparent;
     }
 
-    /* Fade-in animation */
+    /* Fade Animations*/ 
     .fade-in-section {
       opacity: 0;
       transform: translateY(20px);
@@ -42,7 +62,7 @@
       opacity: 1;
       transform: none;
     }
-  
+    /* Branding */
     .logo-img {
       transform: scale(1.4); /* 👈 makes it 40% bigger visually */
       transform-origin: center;
@@ -53,19 +73,16 @@
       transition: transform 0.3s ease;
     }
 
-    /* Fade In */
+    /* Fade Animations */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
-
-
     .divider {
       width: 1000px;
       height: 3px;
@@ -80,10 +97,11 @@
   
 </head>
 <body class="bg-light">
+  <!-- Global Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
   
-      <!-- Left: Logo + Main Links -->
+      <!-- Logo -->
       <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
         <img src="https://cdnwebeditor.picsart.com/web-editor/bca2ee5c-1b38-42b4-9682-8d510c0f9d6e.png" 
              alt="BeautyBot Logo" 
@@ -94,6 +112,7 @@
         BeautyBot
       </a>
   
+      <!-- Main Nav Links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-4">
           <a class="nav-link text-light" href="{{ url_for('quiz') }}">Beauty Quiz</a>
@@ -102,7 +121,7 @@
           <a class="nav-link text-light" href="{{ url_for('browse_products') }}">Browse Products</a>
         </li>
         <li class="nav-item me-4">
-          <a class="nav-link text-light" href="#">Beauty Tips</a> <!-- placeholder -->
+          <a class="nav-link text-light" href="{{ url_for('beauty_tips') }}">Beauty Tips</a>
         </li>
         <li class="nav-item me-4">
           <a class="nav-link text-light" href="{{ url_for('results') }}">Recommendations</a>
@@ -113,8 +132,9 @@
         <!-- Right: Wishlist + Account Icons -->
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
   
-          <!-- Wishlist Icon -->
+          <!-- User Icons -->
           <li class="nav-item">
+            <!-- Wishlist icon -->
             <a class="nav-link" href="{{ url_for('wishlist') }}">
               <img src="https://cdn-icons-png.flaticon.com/512/4379/4379925.png" alt="Wishlist" width="30" height="30" style="object-fit: contain;">
             </a>
@@ -139,15 +159,12 @@
               {% endif %}
             </ul>
           </li>
-  
         </ul>
-  
       </div>
-  
     </div>
   </nav>
   
-
+<!-- Flash message rendering -->
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     <div class="position-fixed top-0 end-0 p-3" style="z-index: 1055;">
@@ -165,10 +182,12 @@
   {% endif %}
 {% endwith %}
 
-
+<!-- Placeholder for content from child templates -->
 <div class="container py-4">
   {% block content %}{% endblock %}
 </div>
+
+<!-- JavaScript dependencies and animations -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -178,6 +197,8 @@
       toast.show();
     });
   });
+
+  // Fade-in on scroll for .fade-in-section
   document.addEventListener('DOMContentLoaded', function () {
     var faders = document.querySelectorAll('.fade-in-section');
 
@@ -195,6 +216,8 @@
       observer.observe(fader);
     });
 });
+
+// Fade-in on scroll for .fade-in
 document.addEventListener('DOMContentLoaded', function () {
   var fadeElements = document.querySelectorAll('.fade-in');
 
@@ -210,7 +233,8 @@ document.addEventListener('DOMContentLoaded', function () {
     observer.observe(element);
   });
 });
-</script>
 
+</script>
 </body>
 </html>
+
