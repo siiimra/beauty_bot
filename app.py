@@ -238,9 +238,6 @@ def get_matching_products(skin_type, finish, price_range, concerns, makeup_pref)
 
 
 
-
-
-
 # Results route
 @app.route('/results', methods=['GET'])
 def results():
