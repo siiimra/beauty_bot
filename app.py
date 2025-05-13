@@ -884,6 +884,28 @@ def beauty_tips():
     return render_template('beauty_tips.html')
 # End of beauty_tips()
 
+"""
+NAME
+    about - renders the static 'About' page
+
+SYNOPSIS
+    about()
+
+DESCRIPTION
+    This route handles requests to the '/about' URL and returns the 
+    'about.html' template. It provides users with an overview or 
+    background information about the BeautyBot application.
+
+RETURNS
+    Renders 'about.html'
+"""
+@app.route('/about')
+def about():
+    # Render about section template
+    return render_template('about.html')
+
+# End of about()
+
 if __name__ == '__main__':
     app.run(debug=True)
 

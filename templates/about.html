@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<a href="{{ url_for('home') }}" class="btn btn-outline-secondary mb-4">← Back Home</a>
+
+<div class="container fade-in" style="max-width: 850px;">
+
+  <div class="text-center mb-5">
+    <h1 class="display-5">About BeautyBot</h1>
+    <p class="lead text-muted">A personalized beauty guide built with passion, experience, and a desire to help.</p>
+  </div>
+
+  <!-- Story Section -->
+  <!-- Story Section with Image -->
+<section class="mb-5">
+    <h3 class="fw-bold border-bottom pb-2">Hi, I’m Simra!</h3>
+    <div class="row align-items-center mt-4">
+      
+      <!-- Left: Image -->
+      <div class="col-md-5 text-center">
+        <img src="{{ url_for('static', filename='images/simra.jpg') }}" alt="Simra Ahmed"
+             class="img-fluid rounded shadow-sm" style="max-height: 400px; object-fit: cover;">
+      </div>
+  
+      <!-- Right: Story -->
+      <div class="col-md-7 mt-4 mt-md-0">
+        <p>I started using makeup when I was really young — blending, experimenting, and learning what worked for me. By the age of <strong>14</strong>, I had already become a <strong>certified makeup artist</strong>.</p>
+        <p>In fact, I inspired my mom to become a makeup artist too! Even though she was just starting out, she often came to me for advice on what products to use and how to build her kit. That's when I realized both adults and younger individuals can feel overwhelmed by makeup.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Purpose Section -->
+  <section class="mb-5">
+    <h3 class="fw-bold border-bottom pb-2">Why I Created BeautyBot</h3>
+    <p>There are hundreds of makeup products out there. But knowing <em>which ones actually suit you</em>, your skin type, your style, and your needs is the hard part.</p>
+    <p>I created <strong>BeautyBot</strong> to make makeup feel less intimidating and more intuitive. Whether you’re a total beginner or just want better recommendations, BeautyBot helps you figure out what to use, and why.</p>
+  </section>
+
+  <!-- What It Does -->
+  <section class="mb-5">
+    <h3 class="fw-bold border-bottom pb-2">How It Helps</h3>
+    <ul class="list-group list-group-flush shadow-sm">
+      <li class="list-group-item">💡 Takes a quick quiz to learn about your skin, preferences, and concerns</li>
+      <li class="list-group-item">🧴 Recommends products that align with your profile — no guessing required</li>
+      <li class="list-group-item">📚 Teaches you what finish, price range, and product types actually mean</li>
+      <li class="list-group-item">🌟 Makes beauty more accessible for beginners, pros, and everyone in between</li>
+    </ul>
+  </section>
+
+  <!-- Call to Action -->
+  <div class="text-center mt-5">
+    <a href="{{ url_for('quiz') }}" class="btn btn-dark btn-lg">Take the Beauty Quiz</a>
+  </div>
+
+</div>
+
+{% endblock %}
