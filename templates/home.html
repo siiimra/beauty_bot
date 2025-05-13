@@ -44,46 +44,122 @@ NOTES:
 <!-- Divider -->
 <h3 class="mb-4 text-center">∘₊✧───────────────────────────────────────────✧₊∘</h3>
 
-<!-- FEATURED PRODUCTS -->
+<!-- FEATURED PRODUCTS: Carousel Version -->
 <section class="py-5 fade-in">
   <div class="container">
     <h3 class="mb-4 text-center">˚₊· ͟͟͞͞➳❥ Featured Products</h3>
-    <div class="row">
-      <div class="col-md-4 mb-4 fade-in">
-        <div class="card h-100 shadow-sm">
-          <img src="https://www.sephora.com/productimages/sku/s1925387-main-hero.jpg" class="card-img-top" alt="Fenty Foundation" style="height: 250px; object-fit: contain;">
-          <div class="card-body">
-            <h5 class="card-title">Fenty Beauty</h5>
-            <p class="card-text">Pro Filt'r Soft Matte Longwear Foundation</p>
-            <a href="https://www.sephora.com/product/pro-filtr-soft-matte-longwear-foundation-P87985432" target="_blank" class="btn btn-outline-dark">Shop Now</a>
-          </div>
-        </div>
+
+    <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel">
+      
+      <!-- Carousel Indicators -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
 
-      <div class="col-md-4 mb-4 fade-in">
-        <div class="card h-100 shadow-sm">
-          <img src="https://media.ulta.com/i/ulta/2604924?w=1600&h=1600&fmt=auto" class="card-img-top" alt="e.l.f. Halo Glow" style="height: 250px; object-fit: contain;">
-          <div class="card-body">
-            <h5 class="card-title">e.l.f. Cosmetics</h5>
-            <p class="card-text">Halo Glow Liquid Filter</p>
-            <a href="https://www.ulta.com/p/halo-glow-liquid-filter-pimprod2036949?sku=2604924" target="_blank" class="btn btn-outline-dark">Shop Now</a>
+      <!-- Carousel Inner -->
+      <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <img src="https://www.sephora.com/productimages/sku/s1925387-main-hero.jpg" class="card-img-top" alt="Fenty Foundation" style="height: 250px; object-fit: contain;">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Fenty Beauty</h5>
+                  <p class="card-text">Pro Filt'r Soft Matte Longwear Foundation</p>
+                  <a href="https://www.sephora.com/product/pro-filtr-soft-matte-longwear-foundation-P87985432" target="_blank" class="btn btn-outline-dark">Shop Now</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <img src="https://media.ulta.com/i/ulta/2604924?w=1600&h=1600&fmt=auto" class="card-img-top" alt="e.l.f. Halo Glow" style="height: 250px; object-fit: contain;">
+                <div class="card-body text-center">
+                  <h5 class="card-title">e.l.f. Cosmetics</h5>
+                  <p class="card-text">Halo Glow Liquid Filter</p>
+                  <a href="https://www.ulta.com/p/halo-glow-liquid-filter-pimprod2036949?sku=2604924" target="_blank" class="btn btn-outline-dark">Shop Now</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <img src="https://www.sephora.com/productimages/sku/s2649754-main-zoom.jpg?imwidth=1224" class="card-img-top" alt="Glossier Ultralip" style="height: 250px; object-fit: contain;">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Glossier</h5>
+                  <p class="card-text">Ultralip</p>
+                  <a href="https://www.sephora.com/product/glossier-ultralip-high-shine-lipstick-with-hyaluronic-acid-P504823?country_switch=us&lang=en&skuId=2649754" target="_blank" class="btn btn-outline-dark">Shop Now</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <img src="https://www.sephora.com/productimages/sku/s2362085-main-zoom.jpg?imwidth=315" class="card-img-top" alt="Rare Beauty Blush" style="height: 250px; object-fit: contain;">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Rare Beauty</h5>
+                  <p class="card-text">Soft Pinch Liquid Blush</p>
+                  <a href="https://www.sephora.com/product/rare-beauty-by-selena-gomez-soft-pinch-liquid-blush-P97989778" target="_blank" class="btn btn-outline-dark">Shop Now</a>
+                </div>
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+          <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <img src="https://media.ulta.com/i/ulta/2536082cm_alt01?w=1600&h=1600&fmt=auto" class="card-img-top" alt="Zulu Eyeshadow Palette" style="height: 250px; object-fit: contain;">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Juvia’s Place</h5>
+                  <p class="card-text">The Zulu Eyeshadow Palette</p>
+                  <a href="https://www.ulta.com/p/zulu-palette-xlsImpprod18771137?sku=2536082" target="_blank" class="btn btn-outline-dark">Shop Now</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <img src="https://m.smashbox.com/media/images/products/840x840/sb_sku_C72202_840x840_0.jpg" class="card-img-top" alt="Becca Highlighter" style="height: 250px; object-fit: contain;">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Becca</h5>
+                  <p class="card-text">Shimmering Skin Perfector</p>
+                  <a href="https://www.sephora.com/product/smashbox-smashbox-x-becca-shimmering-skin-perfector-highlighter-P477825" target="_blank" class="btn btn-outline-dark">Shop Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="col-md-4 mb-4 fade-in">
-        <div class="card h-100 shadow-sm">
-          <img src="https://www.sephora.com/productimages/sku/s2362085-main-zoom.jpg?imwidth=315" class="card-img-top" alt="Rare Beauty Blush" style="height: 250px; object-fit: contain;">
-          <div class="card-body">
-            <h5 class="card-title">Rare Beauty</h5>
-            <p class="card-text">Soft Pinch Liquid Blush</p>
-            <a href="https://www.sephora.com/product/rare-beauty-by-selena-gomez-soft-pinch-liquid-blush-P97989778" target="_blank" class="btn btn-outline-dark">Shop Now</a>
-          </div>
-        </div>
-      </div>
+      <!-- Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+
     </div>
   </div>
 </section>
+
 
 <!-- Divider -->
 <h3 class="mb-4 text-center">∘₊✧───────────────────────────────────────────✧₊∘</h3>

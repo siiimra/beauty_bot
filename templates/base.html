@@ -51,6 +51,21 @@ NOTES:
     background-color: transparent;
     }
 
+    /* Make carousel arrows darker */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: rgba(0, 0, 0, 0.7); /* semi-transparent black */
+      background-size: 100% 100%;
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .carousel-control-prev:hover .carousel-control-prev-icon,
+    .carousel-control-next:hover .carousel-control-next-icon {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
     /* Fade Animations*/ 
     .fade-in-section {
       opacity: 0;
